@@ -1,0 +1,96 @@
+{
+  "deals": [
+    {
+      "id": "deal-001",
+      "company": "Acme Corp",
+      "logo": "https://ui-avatars.com/api/?name=AC&background=3B82F6&color=fff&size=64",
+      "value": 125000,
+      "stage": "Negotiation",
+      "probability": 75,
+      "contact": "Sarah Johnson",
+      "contactRole": "VP of Engineering",
+      "daysInStage": 5,
+      "expectedClose": "2025-02-15",
+      "lastActivity": "Call scheduled for tomorrow",
+      "tags": ["Enterprise", "Q1 Target"]
+    },
+    {
+      "id": "deal-002",
+      "company": "TechStart Inc",
+      "logo": "https://ui-avatars.com/api/?name=TS&background=10B981&color=fff&size=64",
+      "value": 48000,
+      "stage": "Proposal",
+      "probability": 50,
+      "contact": "Mike Chen",
+      "contactRole": "CTO",
+      "daysInStage": 12,
+      "expectedClose": "2025-03-01",
+      "lastActivity": "Proposal sent 2 days ago",
+      "tags": ["Startup", "Fast Track"]
+    },
+    {
+      "id": "deal-003",
+      "company": "Global Systems",
+      "logo": "https://ui-avatars.com/api/?name=GS&background=8B5CF6&color=fff&size=64",
+      "value": 320000,
+      "stage": "Discovery",
+      "probability": 25,
+      "contact": "Emily Rodriguez",
+      "contactRole": "Director of IT",
+      "daysInStage": 3,
+      "expectedClose": "2025-04-30",
+      "lastActivity": "Initial demo completed",
+      "tags": ["Enterprise", "Multi-year"]
+    },
+    {
+      "id": "deal-004",
+      "company": "DataFlow Analytics",
+      "logo": "https://ui-avatars.com/api/?name=DA&background=F59E0B&color=fff&size=64",
+      "value": 85000,
+      "stage": "Closed Won",
+      "probability": 100,
+      "contact": "James Park",
+      "contactRole": "CEO",
+      "daysInStage": 0,
+      "expectedClose": "2025-01-28",
+      "lastActivity": "Contract signed!",
+      "tags": ["Mid-Market", "Expansion"]
+    },
+    {
+      "id": "deal-005",
+      "company": "Innovation Labs",
+      "logo": "https://ui-avatars.com/api/?name=IL&background=EC4899&color=fff&size=64",
+      "value": 156000,
+      "stage": "Negotiation",
+      "probability": 60,
+      "contact": "Lisa Wang",
+      "contactRole": "Head of Product",
+      "daysInStage": 8,
+      "expectedClose": "2025-02-28",
+      "lastActivity": "Pricing discussion pending",
+      "tags": ["Enterprise", "Competitive"]
+    },
+    {
+      "id": "deal-006",
+      "company": "CloudFirst Solutions",
+      "logo": "https://ui-avatars.com/api/?name=CF&background=06B6D4&color=fff&size=64",
+      "value": 67500,
+      "stage": "Proposal",
+      "probability": 40,
+      "contact": "David Kim",
+      "contactRole": "Engineering Manager",
+      "daysInStage": 15,
+      "expectedClose": "2025-03-15",
+      "lastActivity": "Follow-up call needed",
+      "tags": ["Mid-Market", "Q1 Target"]
+    }
+  ],
+  "metrics": {
+    "totalPipeline": 801500,
+    "weightedPipeline": 423750,
+    "dealsInPipeline": 6,
+    "avgDealSize": 133583,
+    "winRate": 32,
+    "avgSalesCycle": 45
+  }
+}

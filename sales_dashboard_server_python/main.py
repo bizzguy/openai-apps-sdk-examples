@@ -1,11 +1,8 @@
-"""Pizzaz demo MCP server implemented with the Python FastMCP helper.
+"""Sales Dashboard MCP server implemented with the Python FastMCP helper.
 
-The server mirrors the Node example in this repository and exposes
-widget-backed tools that render the Pizzaz UI bundle. Each handler returns the
-HTML shell via an MCP resource and echoes the selected topping as structured
-content so the ChatGPT client can hydrate the widget. The module also wires the
-handlers into an HTTP/SSE stack so you can run the server with uvicorn on port
-8000, matching the Node transport behavior."""
+The server exposes widget-backed tools that render the Sales Dashboard UI bundle.
+Each handler returns the HTML shell via an MCP resource and echoes query parameters
+as structured content so the ChatGPT client can hydrate the widget."""
 
 from __future__ import annotations
 
@@ -26,13 +23,13 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     stream=sys.stdout,
 )
-logger = logging.getLogger("pizzaz-server")
+logger = logging.getLogger("sales-dashboard-server")
 from mcp.server.fastmcp import FastMCP
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 
 @dataclass(frozen=True)
-class PizzazWidget:
+class SalesDashboardWidget:
     identifier: str
     title: str
     template_uri: str
@@ -65,51 +62,33 @@ def _load_widget_html(component_name: str) -> str:
     )
 
 
-widgets: List[PizzazWidget] = [
-    PizzazWidget(
-        identifier="pizza-map",
-        title="Show Pizza Map",
-        template_uri="ui://widget/pizza-map.html",
-        invoking="Hand-tossing a map",
-        invoked="Served a fresh map",
-        html=_load_widget_html("pizzaz"),
-        response_text="Rendered a pizza map!",
+widgets: List[SalesDashboardWidget] = [
+    SalesDashboardWidget(
+        identifier="sales-dashboard",
+        title="Show Sales Dashboard",
+        template_uri="ui://widget/sales-dashboard.html",
+        invoking="Loading sales pipeline...",
+        invoked="Sales dashboard ready",
+        html=_load_widget_html("sales-dashboard"),
+        response_text="Here's your sales pipeline dashboard showing active deals and key metrics.",
     ),
-    PizzazWidget(
-        identifier="pizza-carousel",
-        title="Show Pizza Carousel",
-        template_uri="ui://widget/pizza-carousel.html",
-        invoking="Carousel some spots",
-        invoked="Served a fresh carousel",
-        html=_load_widget_html("pizzaz-carousel"),
-        response_text="Rendered a pizza carousel!",
+    SalesDashboardWidget(
+        identifier="sales-pipeline",
+        title="Show Sales Pipeline",
+        template_uri="ui://widget/sales-dashboard.html",
+        invoking="Analyzing pipeline...",
+        invoked="Pipeline analysis complete",
+        html=_load_widget_html("sales-dashboard"),
+        response_text="Displaying your sales pipeline with deal stages and probabilities.",
     ),
-    PizzazWidget(
-        identifier="pizza-albums",
-        title="Show Pizza Album",
-        template_uri="ui://widget/pizza-albums.html",
-        invoking="Hand-tossing an album",
-        invoked="Served a fresh album",
-        html=_load_widget_html("pizzaz-albums"),
-        response_text="Rendered a pizza album!",
-    ),
-    PizzazWidget(
-        identifier="pizza-list",
-        title="Show Pizza List",
-        template_uri="ui://widget/pizza-list.html",
-        invoking="Hand-tossing a list",
-        invoked="Served a fresh list",
-        html=_load_widget_html("pizzaz-list"),
-        response_text="Rendered a pizza list!",
-    ),
-    PizzazWidget(
-        identifier="pizza-shop",
-        title="Open Pizzaz Shop",
-        template_uri="ui://widget/pizza-shop.html",
-        invoking="Opening the shop",
-        invoked="Shop opened",
-        html=_load_widget_html("pizzaz-shop"),
-        response_text="Rendered the Pizzaz shop!",
+    SalesDashboardWidget(
+        identifier="deal-tracker",
+        title="Track Deals",
+        template_uri="ui://widget/sales-dashboard.html",
+        invoking="Fetching deals...",
+        invoked="Deals loaded",
+        html=_load_widget_html("sales-dashboard"),
+        response_text="Here are your active deals organized by stage.",
     ),
 ]
 
@@ -117,34 +96,33 @@ widgets: List[PizzazWidget] = [
 MIME_TYPE = "text/html+skybridge"
 
 
-WIDGETS_BY_ID: Dict[str, PizzazWidget] = {
+WIDGETS_BY_ID: Dict[str, SalesDashboardWidget] = {
     widget.identifier: widget for widget in widgets
 }
-WIDGETS_BY_URI: Dict[str, PizzazWidget] = {
+WIDGETS_BY_URI: Dict[str, SalesDashboardWidget] = {
     widget.template_uri: widget for widget in widgets
 }
 
 logger.info("=" * 60)
-logger.info("Pizzaz MCP Server initialized")
+logger.info("Sales Dashboard MCP Server initialized")
 logger.info(f"  Assets directory: {ASSETS_DIR}")
 logger.info(f"  Loaded {len(widgets)} widgets: {[w.identifier for w in widgets]}")
 logger.info("=" * 60)
 
 
-class PizzaInput(BaseModel):
-    """Schema for pizza tools."""
+class SalesDashboardInput(BaseModel):
+    """Schema for sales dashboard tools."""
 
-    pizza_topping: str = Field(
-        ...,
-        alias="pizzaTopping",
-        description="Topping to mention when rendering the widget.",
+    query: str = Field(
+        default="",
+        description="Optional query to filter or focus the dashboard view (e.g., 'enterprise deals', 'Q1 targets').",
     )
 
     model_config = ConfigDict(populate_by_name=True, extra="forbid")
 
 
 mcp = FastMCP(
-    name="pizzaz-python",
+    name="sales-dashboard-python",
     stateless_http=True,
 )
 
@@ -152,21 +130,21 @@ mcp = FastMCP(
 TOOL_INPUT_SCHEMA: Dict[str, Any] = {
     "type": "object",
     "properties": {
-        "pizzaTopping": {
+        "query": {
             "type": "string",
-            "description": "Topping to mention when rendering the widget.",
+            "description": "Optional query to filter or focus the dashboard view (e.g., 'enterprise deals', 'Q1 targets').",
         }
     },
-    "required": ["pizzaTopping"],
+    "required": [],
     "additionalProperties": False,
 }
 
 
-def _resource_description(widget: PizzazWidget) -> str:
+def _resource_description(widget: SalesDashboardWidget) -> str:
     return f"{widget.title} widget markup"
 
 
-def _tool_meta(widget: PizzazWidget) -> Dict[str, Any]:
+def _tool_meta(widget: SalesDashboardWidget) -> Dict[str, Any]:
     return {
         "openai/outputTemplate": widget.template_uri,
         "openai/toolInvocation/invoking": widget.invoking,
@@ -176,7 +154,7 @@ def _tool_meta(widget: PizzazWidget) -> Dict[str, Any]:
     }
 
 
-def _tool_invocation_meta(widget: PizzazWidget) -> Dict[str, Any]:
+def _tool_invocation_meta(widget: SalesDashboardWidget) -> Dict[str, Any]:
     return {
         "openai/toolInvocation/invoking": widget.invoking,
         "openai/toolInvocation/invoked": widget.invoked,
@@ -194,7 +172,6 @@ async def _list_tools() -> List[types.Tool]:
             description=widget.title,
             inputSchema=deepcopy(TOOL_INPUT_SCHEMA),
             _meta=_tool_meta(widget),
-            # To disable the approval prompt for the tools
             annotations={
                 "destructiveHint": False,
                 "openWorldHint": False,
@@ -307,8 +284,8 @@ async def _call_tool_request(req: types.CallToolRequest) -> types.ServerResult:
 
     arguments = req.params.arguments or {}
     try:
-        payload = PizzaInput.model_validate(arguments)
-        logger.info(f"  Validated payload: pizza_topping={payload.pizza_topping}")
+        payload = SalesDashboardInput.model_validate(arguments)
+        logger.info(f"  Validated payload: query={payload.query}")
     except ValidationError as exc:
         logger.error(f"  Validation error: {exc.errors()}")
         logger.info("=" * 60)
@@ -324,12 +301,12 @@ async def _call_tool_request(req: types.CallToolRequest) -> types.ServerResult:
             )
         )
 
-    topping = payload.pizza_topping
+    query = payload.query
     meta = _tool_invocation_meta(widget)
 
     logger.info(f"RESPONSE: Tool call successful")
     logger.info(f"  Response text: {widget.response_text}")
-    logger.info(f"  Structured content: {{'pizzaTopping': '{topping}'}}")
+    logger.info(f"  Structured content: {{'query': '{query}'}}")
     logger.info(f"  Meta: {meta}")
     logger.info("=" * 60)
 
@@ -341,7 +318,7 @@ async def _call_tool_request(req: types.CallToolRequest) -> types.ServerResult:
                     text=widget.response_text,
                 )
             ],
-            structuredContent={"pizzaTopping": topping},
+            structuredContent={"query": query},
             _meta=meta,
         )
     )
@@ -371,7 +348,7 @@ if __name__ == "__main__":
     import uvicorn
 
     logger.info("=" * 60)
-    logger.info("Starting Pizzaz MCP Server")
+    logger.info("Starting Sales Dashboard MCP Server")
     logger.info(f"  Assets directory: {ASSETS_DIR}")
     logger.info(f"  Available widgets: {[w.identifier for w in widgets]}")
     logger.info("=" * 60)
