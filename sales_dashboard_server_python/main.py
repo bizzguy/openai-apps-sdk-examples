@@ -1,8 +1,8 @@
-"""Sales Dashboard MCP server implemented with the Python FastMCP helper.
+"""Commercial Real Estate Leads Dashboard MCP server implemented with the Python FastMCP helper.
 
-The server exposes widget-backed tools that render the Sales Dashboard UI bundle.
+The server exposes widget-backed tools that render the DuPage County CRE Leads Dashboard UI bundle.
 Each handler returns the HTML shell via an MCP resource and echoes query parameters
-as structured content so the ChatGPT client can hydrate the widget."""
+as structured content so the ChatGPT client can hydrate the widget with commercial real estate data."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     stream=sys.stdout,
 )
-logger = logging.getLogger("sales-dashboard-server")
+logger = logging.getLogger("cre-leads-dashboard-server")
 from mcp.server.fastmcp import FastMCP
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
@@ -64,31 +64,31 @@ def _load_widget_html(component_name: str) -> str:
 
 widgets: List[SalesDashboardWidget] = [
     SalesDashboardWidget(
-        identifier="sales-dashboard",
-        title="Show Sales Dashboard",
+        identifier="cre-leads-dashboard",
+        title="Show Commercial Real Estate Leads Dashboard",
         template_uri="ui://widget/sales-dashboard.html",
-        invoking="Loading sales pipeline...",
-        invoked="Sales dashboard ready",
+        invoking="Loading DuPage County CRE leads...",
+        invoked="Leads dashboard ready",
         html=_load_widget_html("sales-dashboard"),
-        response_text="Here's your sales pipeline dashboard showing active deals and key metrics.",
+        response_text="Here's your DuPage County commercial real estate leads dashboard showing active properties, contacts, and notes.",
     ),
     SalesDashboardWidget(
-        identifier="sales-pipeline",
-        title="Show Sales Pipeline",
+        identifier="property-tracker",
+        title="Track Properties",
         template_uri="ui://widget/sales-dashboard.html",
-        invoking="Analyzing pipeline...",
-        invoked="Pipeline analysis complete",
+        invoking="Fetching properties...",
+        invoked="Properties loaded",
         html=_load_widget_html("sales-dashboard"),
-        response_text="Displaying your sales pipeline with deal stages and probabilities.",
+        response_text="Displaying your commercial properties in DuPage County with buy/sell status and contact information.",
     ),
     SalesDashboardWidget(
-        identifier="deal-tracker",
-        title="Track Deals",
+        identifier="lead-contacts",
+        title="View Lead Contacts",
         template_uri="ui://widget/sales-dashboard.html",
-        invoking="Fetching deals...",
-        invoked="Deals loaded",
+        invoking="Loading contacts and notes...",
+        invoked="Contacts loaded",
         html=_load_widget_html("sales-dashboard"),
-        response_text="Here are your active deals organized by stage.",
+        response_text="Here are your lead contacts with their associated notes and property information.",
     ),
 ]
 
@@ -104,25 +104,25 @@ WIDGETS_BY_URI: Dict[str, SalesDashboardWidget] = {
 }
 
 logger.info("=" * 60)
-logger.info("Sales Dashboard MCP Server initialized")
+logger.info("DuPage County CRE Leads Dashboard MCP Server initialized")
 logger.info(f"  Assets directory: {ASSETS_DIR}")
 logger.info(f"  Loaded {len(widgets)} widgets: {[w.identifier for w in widgets]}")
 logger.info("=" * 60)
 
 
 class SalesDashboardInput(BaseModel):
-    """Schema for sales dashboard tools."""
+    """Schema for commercial real estate leads dashboard tools."""
 
     query: str = Field(
         default="",
-        description="Optional query to filter or focus the dashboard view (e.g., 'enterprise deals', 'Q1 targets').",
+        description="Optional query to filter or focus the dashboard view (e.g., 'buy properties', 'high priority', 'office buildings').",
     )
 
     model_config = ConfigDict(populate_by_name=True, extra="forbid")
 
 
 mcp = FastMCP(
-    name="sales-dashboard-python",
+    name="cre-leads-dashboard-python",
     stateless_http=True,
 )
 
@@ -132,7 +132,7 @@ TOOL_INPUT_SCHEMA: Dict[str, Any] = {
     "properties": {
         "query": {
             "type": "string",
-            "description": "Optional query to filter or focus the dashboard view (e.g., 'enterprise deals', 'Q1 targets').",
+            "description": "Optional query to filter or focus the dashboard view (e.g., 'buy properties', 'high priority', 'office buildings').",
         }
     },
     "required": [],
@@ -348,7 +348,7 @@ if __name__ == "__main__":
     import uvicorn
 
     logger.info("=" * 60)
-    logger.info("Starting Sales Dashboard MCP Server")
+    logger.info("Starting DuPage County CRE Leads Dashboard MCP Server")
     logger.info(f"  Assets directory: {ASSETS_DIR}")
     logger.info(f"  Available widgets: {[w.identifier for w in widgets]}")
     logger.info("=" * 60)

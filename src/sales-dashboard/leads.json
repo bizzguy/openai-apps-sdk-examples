@@ -1,0 +1,335 @@
+{
+  "leads": [
+    {
+      "id": "L001",
+      "propertyType": "sell",
+      "property": {
+        "address": "1200 Butterfield Rd",
+        "city": "Downers Grove",
+        "state": "IL",
+        "zip": "60515",
+        "county": "DuPage",
+        "type": "Office Building",
+        "squareFeet": 45000,
+        "price": 8500000,
+        "zoning": "B-3",
+        "yearBuilt": 1998,
+        "description": "Prime office building with excellent highway access. Recently renovated common areas."
+      },
+      "status": "active",
+      "priority": "high",
+      "dateAdded": "2025-01-15",
+      "contacts": [
+        {
+          "id": "C001-1",
+          "name": "Michael Chen",
+          "email": "mchen@properties-inc.com",
+          "phone": "(630) 555-0123",
+          "company": "Chen Properties Inc",
+          "title": "Owner",
+          "type": "seller",
+          "notes": [
+            {
+              "date": "2025-01-15",
+              "author": "Agent",
+              "text": "Initial contact made. Michael is motivated to sell before Q2. Willing to negotiate on price for quick close."
+            },
+            {
+              "date": "2025-01-20",
+              "author": "Agent",
+              "text": "Discussed renovation details. HVAC system upgraded in 2023. Roof warranty good through 2028."
+            },
+            {
+              "date": "2025-01-25",
+              "author": "Agent",
+              "text": "Michael mentioned he has another property in Naperville he may list next quarter."
+            }
+          ]
+        },
+        {
+          "id": "C001-2",
+          "name": "Sarah Martinez",
+          "email": "smartinez@cbrealty.com",
+          "phone": "(630) 555-0145",
+          "company": "CB Realty Partners",
+          "title": "CFO",
+          "type": "decision-maker",
+          "notes": [
+            {
+              "date": "2025-01-22",
+              "author": "Agent",
+              "text": "Sarah handles all financial decisions. She requested updated comp analysis for the area."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L002",
+      "propertyType": "buy",
+      "property": {
+        "address": "800 Roosevelt Rd",
+        "city": "Glen Ellyn",
+        "state": "IL",
+        "zip": "60137",
+        "county": "DuPage",
+        "type": "Retail Strip Center",
+        "squareFeet": 28000,
+        "price": 4200000,
+        "zoning": "C-2",
+        "yearBuilt": 2005,
+        "description": "Well-maintained retail center with anchor tenant. High traffic location near downtown Glen Ellyn."
+      },
+      "status": "active",
+      "priority": "high",
+      "dateAdded": "2025-01-10",
+      "contacts": [
+        {
+          "id": "C002-1",
+          "name": "David Thompson",
+          "email": "dthompson@invgroup.com",
+          "phone": "(630) 555-0189",
+          "company": "Thompson Investment Group",
+          "title": "Managing Partner",
+          "type": "buyer",
+          "notes": [
+            {
+              "date": "2025-01-10",
+              "author": "Agent",
+              "text": "David is actively looking for retail properties in western suburbs. Has capital ready for immediate purchase."
+            },
+            {
+              "date": "2025-01-18",
+              "author": "Agent",
+              "text": "Toured property. Very interested. Concerned about lease expirations - need to provide detailed tenant schedule."
+            },
+            {
+              "date": "2025-01-24",
+              "author": "Agent",
+              "text": "David requested LOI template. Plans to submit offer by end of week if tenant info looks good."
+            }
+          ]
+        },
+        {
+          "id": "C002-2",
+          "name": "Jennifer Wu",
+          "email": "jwu@invgroup.com",
+          "phone": "(630) 555-0190",
+          "company": "Thompson Investment Group",
+          "title": "Acquisition Analyst",
+          "type": "analyst",
+          "notes": [
+            {
+              "date": "2025-01-12",
+              "author": "Agent",
+              "text": "Jennifer handles all due diligence. She needs rent roll, operating expenses for last 3 years, and CAM reconciliation."
+            },
+            {
+              "date": "2025-01-19",
+              "author": "Agent",
+              "text": "Sent requested documents. Jennifer mentioned their target cap rate is 6.5-7%."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L003",
+      "propertyType": "sell",
+      "property": {
+        "address": "2200 Warrenville Rd",
+        "city": "Lisle",
+        "state": "IL",
+        "zip": "60532",
+        "county": "DuPage",
+        "type": "Industrial Warehouse",
+        "squareFeet": 85000,
+        "price": 6800000,
+        "zoning": "M-1",
+        "yearBuilt": 1992,
+        "description": "Clear span warehouse with 24' ceiling height. 8 dock doors, 2 drive-in doors. Close to I-88 corridor."
+      },
+      "status": "active",
+      "priority": "medium",
+      "dateAdded": "2025-01-08",
+      "contacts": [
+        {
+          "id": "C003-1",
+          "name": "Robert Kowalski",
+          "email": "rkowalski@logistics-co.com",
+          "phone": "(630) 555-0234",
+          "company": "Midwest Logistics Co",
+          "title": "VP Operations",
+          "type": "seller",
+          "notes": [
+            {
+              "date": "2025-01-08",
+              "author": "Agent",
+              "text": "Company consolidating operations. Robert needs to sell before June 30th fiscal year end."
+            },
+            {
+              "date": "2025-01-16",
+              "author": "Agent",
+              "text": "Discussed environmental assessment from 2024. No issues found. Property is ready for immediate occupancy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L004",
+      "propertyType": "buy",
+      "property": {
+        "address": "500 Park Blvd",
+        "city": "Itasca",
+        "state": "IL",
+        "zip": "60143",
+        "county": "DuPage",
+        "type": "Office Building",
+        "squareFeet": 32000,
+        "price": 5200000,
+        "zoning": "B-2",
+        "yearBuilt": 2010,
+        "description": "Class A office building in established business park. LEED certified, modern amenities."
+      },
+      "status": "active",
+      "priority": "high",
+      "dateAdded": "2025-01-12",
+      "contacts": [
+        {
+          "id": "C004-1",
+          "name": "Patricia O'Brien",
+          "email": "pobrien@techcorp.com",
+          "phone": "(630) 555-0267",
+          "company": "TechCorp Solutions",
+          "title": "CFO",
+          "type": "buyer",
+          "notes": [
+            {
+              "date": "2025-01-12",
+              "author": "Agent",
+              "text": "Company expanding. Looking for modern office space for 150 employees. Prefer owner-occupied."
+            },
+            {
+              "date": "2025-01-17",
+              "author": "Agent",
+              "text": "Patricia toured building, loves the location and finishes. Needs board approval - presenting next week."
+            },
+            {
+              "date": "2025-01-23",
+              "author": "Agent",
+              "text": "Board approved budget up to $5.5M. Patricia wants to schedule another walk-through with IT team."
+            }
+          ]
+        },
+        {
+          "id": "C004-2",
+          "name": "James Park",
+          "email": "jpark@techcorp.com",
+          "phone": "(630) 555-0268",
+          "company": "TechCorp Solutions",
+          "title": "IT Director",
+          "type": "technical-reviewer",
+          "notes": [
+            {
+              "date": "2025-01-24",
+              "author": "Agent",
+              "text": "James needs to verify fiber connectivity and server room specs. Scheduled walk-through for 1/27."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L005",
+      "propertyType": "sell",
+      "property": {
+        "address": "1500 Ogden Ave",
+        "city": "Naperville",
+        "state": "IL",
+        "zip": "60563",
+        "county": "DuPage",
+        "type": "Mixed Use",
+        "squareFeet": 42000,
+        "price": 7200000,
+        "zoning": "CBD",
+        "yearBuilt": 2015,
+        "description": "Downtown mixed-use development. Retail on ground floor, professional offices above. Prime Naperville location."
+      },
+      "status": "active",
+      "priority": "medium",
+      "dateAdded": "2025-01-05",
+      "contacts": [
+        {
+          "id": "C005-1",
+          "name": "Lisa Anderson",
+          "email": "landerson@napdevelopment.com",
+          "phone": "(630) 555-0301",
+          "company": "Naperville Development LLC",
+          "title": "Managing Member",
+          "type": "seller",
+          "notes": [
+            {
+              "date": "2025-01-05",
+              "author": "Agent",
+              "text": "Lisa inherited property from family business. Not actively involved in CRE, wants simple transaction."
+            },
+            {
+              "date": "2025-01-14",
+              "author": "Agent",
+              "text": "All units currently leased. Strong NOI. Lisa willing to hold paper for qualified buyer if needed."
+            },
+            {
+              "date": "2025-01-21",
+              "author": "Agent",
+              "text": "Lisa received unsolicited offer at $6.8M. Gave us 2 weeks to bring better offer before considering."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L006",
+      "propertyType": "buy",
+      "property": {
+        "address": "3400 Finley Rd",
+        "city": "Downers Grove",
+        "state": "IL",
+        "zip": "60515",
+        "county": "DuPage",
+        "type": "Restaurant",
+        "squareFeet": 8500,
+        "price": 1850000,
+        "zoning": "B-1",
+        "yearBuilt": 2008,
+        "description": "Freestanding restaurant building with full commercial kitchen. High visibility corner location."
+      },
+      "status": "active",
+      "priority": "low",
+      "dateAdded": "2025-01-18",
+      "contacts": [
+        {
+          "id": "C006-1",
+          "name": "Marco Rossi",
+          "email": "mrossi@rossigroup.com",
+          "phone": "(630) 555-0345",
+          "company": "Rossi Restaurant Group",
+          "title": "Owner",
+          "type": "buyer",
+          "notes": [
+            {
+              "date": "2025-01-18",
+              "author": "Agent",
+              "text": "Marco operates 6 restaurants in Chicago area. Looking to expand to western suburbs. Budget flexible."
+            },
+            {
+              "date": "2025-01-26",
+              "author": "Agent",
+              "text": "Showed property. Marco concerned about parking count. Will need variance for his concept. Still evaluating."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
