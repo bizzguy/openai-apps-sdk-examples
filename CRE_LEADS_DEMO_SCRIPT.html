@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DuPage County CRE Leads Dashboard Demo Script</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">DuPage County CRE Leads Dashboard Demo Script</h1>
+</header>
+<h1 id="dupage-county-cre-leads-dashboard-demo-script">DuPage County CRE
+Leads Dashboard – Demo Script</h1>
+<h2 id="create-the-mcp-connection">1. Create the MCP Connection</h2>
+<ul>
+<li>Open ChatGPT’s MCP Connections panel</li>
+<li>Add new connection:
+<ul>
+<li><strong>Name:</strong> sparkybot</li>
+<li><strong>URL:</strong> https://sparkybot.ngrok.app/mcp</li>
+<li><strong>Authentication:</strong> Select “No Authentication”</li>
+</ul></li>
+</ul>
+<h2 id="view-available-tools-connection-page">2. View Available Tools
+(connection page)</h2>
+<ul>
+<li>Open the connection details to view MCP tools:
+<ul>
+<li><code>cre-leads-dashboard</code> – Show main dashboard with all
+DuPage County properties</li>
+<li><code>property-tracker</code> – Track commercial properties with
+buy/sell status</li>
+<li><code>lead-contacts</code> – View contacts, notes, and relationship
+history</li>
+</ul></li>
+</ul>
+<h2 id="view-available-tools-via-chatgpt">3. View Available Tools (via
+ChatGPT)</h2>
+<ul>
+<li>Ask ChatGPT: <strong>“What can sparkybot do?”</strong></li>
+<li>ChatGPT reads the MCP schema and summarizes the 3 CRE tools
+automatically</li>
+<li>Confirms connection to DuPage County commercial real estate
+database</li>
+</ul>
+<h2 id="live-dashboard-demo-overview">4. Live Dashboard Demo –
+Overview</h2>
+<p>Ask ChatGPT: &gt; <strong>“Using sparkybot, show me my commercial
+real estate leads dashboard for DuPage County”</strong></p>
+<ul>
+<li>Interactive widget appears showing:
+<ul>
+<li><strong>6 active properties</strong> across DuPage County</li>
+<li><strong>Total portfolio value:</strong> $33.6M</li>
+<li><strong>11 contacts</strong> with detailed notes</li>
+<li>Buy/Sell filtering</li>
+<li>Priority badges (High/Medium/Low)</li>
+</ul></li>
+</ul>
+<h2 id="property-analysis-demo">5. Property Analysis Demo</h2>
+<p>Ask ChatGPT: &gt; <strong>“Sparkybot, which properties are priced
+above $5M and what’s their current status?”</strong></p>
+<ul>
+<li>Shows filtered view:
+<ul>
+<li><strong>Office Building</strong> - Butterfield Rd, Downers Grove
+($8.5M)</li>
+<li><strong>Industrial Warehouse</strong> - Warrenville Rd, Lisle
+($6.8M)</li>
+<li><strong>Mixed Use</strong> - Ogden Ave, Naperville ($7.2M)</li>
+<li><strong>Office Building</strong> - Park Blvd, Itasca ($5.2M)</li>
+</ul></li>
+</ul>
+<h2 id="contact-notes-deep-dive">6. Contact &amp; Notes Deep Dive</h2>
+<p>Ask ChatGPT: &gt; <strong>“Show me all contacts for the office
+building on Butterfield Rd using sparkybot. What are the recent
+notes?”</strong></p>
+<ul>
+<li>Widget displays expandable contact cards:
+<ul>
+<li><strong>Michael Chen</strong> (Owner) - 3 notes including motivation
+to sell before Q2</li>
+<li><strong>Sarah Martinez</strong> (CFO) - 1 note about financial
+decisions and comp analysis</li>
+</ul></li>
+<li>Each note includes timestamp and author</li>
+<li>Action buttons: Call, Email, Add Note</li>
+</ul>
+<h2 id="decision-support-demo">7. Decision Support Demo</h2>
+<p>Ask ChatGPT: &gt; <strong>“Based on my sparkybot CRE dashboard, what
+are the 3 most urgent actions I should take today?”</strong></p>
+<ul>
+<li>ChatGPT analyzes the dashboard data and provides:
+<ol type="1">
+<li>Follow up with David Thompson (Thompson Investment Group) - LOI due
+this week</li>
+<li>Address Patricia O’Brien’s IT team walk-through request</li>
+<li>Respond to Lisa Anderson’s competing offer ($6.8M) with better
+proposal</li>
+</ol></li>
+</ul>
+<h2 id="interactive-widget-features">8. Interactive Widget Features</h2>
+<ul>
+<li><strong>Click any property card</strong> to see full details</li>
+<li><strong>Expand contact cards</strong> to read conversation
+history</li>
+<li><strong>Filter by Buy/Sell</strong> to focus on specific deal
+types</li>
+<li><strong>Real-time metrics</strong> showing pipeline health</li>
+<li><strong>Smooth animations</strong> for professional
+presentation</li>
+</ul>
+<h2 id="closing-line">Closing Line</h2>
+<p><strong>“MCP transforms ChatGPT into a powerful CRE
+workspace—tracking $33M+ in DuPage County properties, managing 11+
+client relationships, and organizing 23 detailed notes—all through
+conversational queries. Your entire commercial real estate pipeline,
+accessible through natural language.”</strong></p>
+<hr />
+<h2 id="technical-highlights">Technical Highlights</h2>
+<ul>
+<li><strong>Protocol:</strong> Model Context Protocol (MCP)</li>
+<li><strong>Transport:</strong> StreamableHTTP via ngrok</li>
+<li><strong>Framework:</strong> FastMCP (Python), React + Vite</li>
+<li><strong>Data:</strong> 6 properties, 11 contacts, 23 timestamped
+notes</li>
+<li><strong>Location:</strong> DuPage County, IL (Downers Grove, Glen
+Ellyn, Lisle, Itasca, Naperville)</li>
+<li><strong>Property Types:</strong> Office, Retail, Industrial,
+Mixed-Use, Restaurant</li>
+<li><strong>Price Range:</strong> $1.85M - $8.5M</li>
+</ul>
+<h2 id="demo-tips">Demo Tips</h2>
+<ol type="1">
+<li><strong>Always mention “sparkybot”</strong> in the first prompt to
+activate the MCP</li>
+<li><strong>Use specific filters</strong> like “high priority” or “buy
+properties” for targeted views</li>
+<li><strong>Ask for analysis</strong> – ChatGPT can provide insights
+beyond just displaying data</li>
+<li><strong>Show the contact notes</strong> – demonstrates the
+relationship tracking power</li>
+<li><strong>Highlight the metrics</strong> – $33.6M total portfolio,
+instant analytics</li>
+</ol>
+</body>
+</html>
